@@ -127,6 +127,7 @@ public class JimmyFacts  extends ListenerAdapter {
                 list.add(stringBuilder.toString());
                 stringBuilder.setLength(0);
             }
+
         }
         list.add(stringBuilder.toString());
         return list;

@@ -43,7 +43,7 @@ public class JimmyBotImpl implements JimmyBot {
         jdaApi.addEventListener(jimmyFacts);
         jdaApi.addEventListener(jimmyAudio);
         Guild guild = jdaApi.getGuilds().get(0);
-        TextChannel textChannel = guild.getTextChannelsByName("pantheon",true).get(0);
+        TextChannel textChannel = guild.getTextChannelsByName("pa-webbo",true).get(0);
         Scanner scan = new Scanner(System.in);
         while(true){
             String nextLine = scan.nextLine();

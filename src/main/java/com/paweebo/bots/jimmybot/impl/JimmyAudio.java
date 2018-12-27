@@ -17,6 +17,8 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.dv8tion.jda.core.managers.AudioManager;
 
+import java.util.List;
+
 
 /**
  * Created by Mangaloid on 12/7/2017.
@@ -49,7 +51,7 @@ public class JimmyAudio extends ListenerAdapter {
         audioManager.setSendingHandler(new AudioPlayerSendHandler(audioPlayer));
         joinSoundManager = new DiscordSoundManager(audioPlayerManager, audioManager, audioPlayer, guild.getVoiceChannelsByName(CHANNEL_NAME, true).get(0));
         jimmySoundManager = new DiscordSoundManager(audioPlayerManager, audioManager, audioPlayer, guild.getVoiceChannelsByName(CHANNEL_NAME, true).get(0));
-        registerDiscordSounds();
+        registerDiscordSounds(botConfig);
     }
 
 
@@ -101,25 +103,43 @@ public class JimmyAudio extends ListenerAdapter {
             joinSoundManager.playJimmySound(memberName);
         }
     }
-    
-    private void registerDiscordSounds(){
+
+    private void registerDiscordSounds(BotConfig botConfig){
+        //SoundTrigger trigger = new SoundTrigger("yawn", "audio.wav");
+        //jimmySoundManager.registerSound(trigger.getTrigger(),trigger.getSoundLink());
+        List<SoundTrigger> soundTriggers = botConfig.getSoundTriggers();
+        for(SoundTrigger trigger : soundTriggers){
+          jimmySoundManager.registerSound(trigger.getTrigger(),trigger.getSoundLink());
+        }
+        List<SoundTrigger> joinTriggers = botConfig.getJoinTriggers();
+        for(SoundTrigger trigger : joinTriggers){
+            joinSoundManager.registerSound(trigger.getTrigger(),trigger.getSoundLink());
+        }
+
         jimmySoundManager.registerSound("yawn","audio.wav");
-        jimmySoundManager.registerSound("slurp","ibEix1PhO1M");
-        jimmySoundManager.registerSound("ayylmao","qvI8XvAKAv0");
+        //jimmySoundManager.registerSound("slurp","ibEix1PhO1M");
+        //jimmySoundManager.registerSound("ayylmao","qvI8XvAKAv0");
         jimmySoundManager.registerSound("alien","dZipOstSTsg");
         jimmySoundManager.registerSound("osteoporosis","dKT2CdxeIFk");
         jimmySoundManager.registerSound("depression","SLEdsI731J4");
         jimmySoundManager.registerSound("cricket","RktX4lbe_g4");
         jimmySoundManager.registerSound("drums","6zXDo4dL7SU");
         jimmySoundManager.registerSound("fail","_asNhzXq72w");
+        jimmySoundManager.registerSound("dicks","-gYCHXCt0to");
         jimmySoundManager.registerSound("doit","FQRW0RM4V0k");
-        joinSoundManager.registerSound("trinos","_AZDaW3GLQw");
-        joinSoundManager.registerSound("pontifex","OZVD4-XqGR4");
-        joinSoundManager.registerSound("oldkingklutch","ljqDMYqD6ME");
-        joinSoundManager.registerSound("beretta","T.mp3");
-        joinSoundManager.registerSound("ashook's coach","0u4CVRGVK7M");
-        joinSoundManager.registerSound("cris","IuhYhtZR-xc");
-        joinSoundManager.registerSound("mamba","uW6nkqUmnYU");
-        joinSoundManager.registerSound("coolguy personboy","zkVi0vs0nXs");
+        jimmySoundManager.registerSound("horn","QVw5mnRI8Zw");
+        jimmySoundManager.registerSound("wae","NqQd2ocRuCM");
+        jimmySoundManager.registerSound("spag","1xA7j_TceH4");
+        jimmySoundManager.registerSound("offer","Ch8uCOPbH7I");
+        jimmySoundManager.registerSound("skidoo","3rdLRcazpdY");
+        jimmySoundManager.registerSound("done","9Mmp6-Lofdk");
+        jimmySoundManager.registerSound("terrell","audioclips/iBeatMyMeat.mp3");
+        jimmySoundManager.registerSound("red","audioclips/frescocommunist.mp3");
+        jimmySoundManager.registerSound("berserk","ocQ6PDiP014");
+        jimmySoundManager.registerSound("cancel","RwJIAnh7lNw");
+        //joinSoundManager.registerSound("jimmyfacts","ocQ6PDiP014");
+
+     //  botConfig.getSoundTriggers();
+
     }
 }
