@@ -58,6 +58,9 @@ public class JimmyAudio extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContent();
+        if(!message.startsWith("!jimmysound")){
+            return;
+        }
         int paramIndex = message.indexOf(" ");
         if(message == null || message.length() == 0){
             return;
@@ -137,7 +140,6 @@ public class JimmyAudio extends ListenerAdapter {
         jimmySoundManager.registerSound("red","audioclips/frescocommunist.mp3");
         jimmySoundManager.registerSound("berserk","ocQ6PDiP014");
         jimmySoundManager.registerSound("cancel","RwJIAnh7lNw");
-        //joinSoundManager.registerSound("jimmyfacts","ocQ6PDiP014");
 
      //  botConfig.getSoundTriggers();
 
