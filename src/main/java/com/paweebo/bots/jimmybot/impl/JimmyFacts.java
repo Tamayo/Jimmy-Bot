@@ -30,6 +30,7 @@ public class JimmyFacts  extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event){
         String message = event.getMessage().getContent();
         MessageChannel messageChannel = event.getChannel();
+
         if(message.charAt(0) != '!'){
             return;
         }

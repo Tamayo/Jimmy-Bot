@@ -21,6 +21,7 @@ public class XStreamSerializer<T> {
         this.filePath = filePath;
         this.xStream = new XStream();
         this.defaultObject = defaultObject;
+        this.xStream.ignoreUnknownElements();
     }
 
     public void serialize(T toSerialize){
@@ -47,6 +48,10 @@ public class XStreamSerializer<T> {
 
     public XStream getXStream(){
         return xStream;
+    }
+
+    public void addClassAlias(String name, Class classToAlias){
+        xStream.alias(name,classToAlias);
     }
 
     public interface FileNotExistCallback{

@@ -25,7 +25,7 @@ public class JimmyBotImpl implements JimmyBot {
     private final BotConfig botConfig;
 
 
-    public JimmyBotImpl() {
+    public JimmyBotImpl() throws Exception {
         botConfig = BotConfig.getBotConfiguration();
         try {
             jdaApi = new JDABuilder(AccountType.BOT).setToken(new String(Files.readAllBytes(Paths.get("token.txt")))).buildBlocking();
@@ -43,7 +43,7 @@ public class JimmyBotImpl implements JimmyBot {
         jdaApi.addEventListener(jimmyFacts);
         jdaApi.addEventListener(jimmyAudio);
         Guild guild = jdaApi.getGuilds().get(0);
-        TextChannel textChannel = guild.getTextChannelsByName("pa-webbo",true).get(0);
+        TextChannel textChannel = guild.getTextChannelsByName("pawebbo",true).get(0);
         Scanner scan = new Scanner(System.in);
         while(true){
             String nextLine = scan.nextLine();

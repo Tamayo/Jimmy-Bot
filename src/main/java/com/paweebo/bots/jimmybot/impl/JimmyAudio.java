@@ -58,6 +58,9 @@ public class JimmyAudio extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContent();
+        if(!message.toLowerCase().startsWith("!jimmysound")){
+            return;
+        }
         int paramIndex = message.indexOf(" ");
         if(message == null || message.length() == 0){
             return;

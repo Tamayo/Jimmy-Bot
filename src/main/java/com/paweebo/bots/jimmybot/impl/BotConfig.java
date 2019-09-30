@@ -13,12 +13,11 @@ public class BotConfig {
 
 
     private String voiceChannelName;
-    private transient static final XStreamSerializer<BotConfig> xStreamSerializer = new XStreamSerializer<BotConfig>("botConfig.xml",new BotConfig());
+    private transient static final XStreamSerializer<BotConfig> xStreamSerializer = new XStreamSerializer<>("botConfig.xml",new BotConfig());
 
     static{
-        xStreamSerializer.getXStream().alias("configuration",BotConfig.class);
-        xStreamSerializer.getXStream().alias("soundTrigger",SoundTrigger.class);
-        xStreamSerializer.getXStream().ignoreUnknownElements();
+        xStreamSerializer.addClassAlias("configuration",BotConfig.class);
+        xStreamSerializer.addClassAlias("soundTrigger",SoundTrigger.class);
     }
 
     public static BotConfig getBotConfiguration(){

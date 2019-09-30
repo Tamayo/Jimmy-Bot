@@ -8,7 +8,7 @@ import com.paweebo.bots.jimmybot.interfaces.JimmyBot;
  */
 public class JimmyBotRunner {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
         JimmyBot jimmyBot = new JimmyBotImpl();
     }
 }
