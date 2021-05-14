@@ -1,13 +1,13 @@
 package com.paweebo.bots.jimmybot.impl;
 
-import com.thoughtworks.xstream.XStream;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.dv8tion.jda.core.requests.RestAction;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.requests.RestAction;
 
-import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,7 +28,7 @@ public class JimmyFacts  extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
-        String message = event.getMessage().getContent();
+        String message = event.getMessage().getContentRaw();
         MessageChannel messageChannel = event.getChannel();
 
         if(message.charAt(0) != '!'){
@@ -69,7 +69,7 @@ public class JimmyFacts  extends ListenerAdapter {
 
     private String getFact(MessageReceivedEvent event){
         Random rand = new Random();
-        String message = event.getMessage().getContent();
+        String message = event.getMessage().getContentRaw();
         int jimmyFactIndex = message.indexOf(" ");
 
         if(jimmyFactIndex != -1){

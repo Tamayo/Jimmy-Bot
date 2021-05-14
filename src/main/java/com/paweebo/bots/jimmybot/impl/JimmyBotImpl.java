@@ -1,15 +1,12 @@
 package com.paweebo.bots.jimmybot.impl;
 
 import com.paweebo.bots.jimmybot.interfaces.JimmyBot;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.exceptions.RateLimitedException;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.TextChannel;
 
 import javax.security.auth.login.LoginException;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -28,14 +25,8 @@ public class JimmyBotImpl implements JimmyBot {
     public JimmyBotImpl() throws Exception {
         botConfig = BotConfig.getBotConfiguration();
         try {
-            jdaApi = new JDABuilder(AccountType.BOT).setToken(new String(Files.readAllBytes(Paths.get("token.txt")))).buildBlocking();
+            jdaApi = JDABuilder.createDefault(new String(Files.readAllBytes(Paths.get("token.txt")))).build().awaitReady();
         } catch (LoginException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (RateLimitedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
         jimmyFacts = new JimmyFacts(jdaApi);
